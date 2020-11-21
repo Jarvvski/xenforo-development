@@ -2,9 +2,9 @@
 *
 
 ### Ignore files other than our addon & config ###
+!config.php
 !src/
 src/**
-!src/config.php
 !src/addons/
 src/addons/**
 !src/addons/Acme/
