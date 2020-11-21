@@ -1,0 +1,27 @@
+### Ignore everything ###
+*
+
+### Ignore files other than our addon & config ###
+!src/
+src/**
+!src/config.php
+!src/addons/
+src/addons/**
+!src/addons/Acme/
+src/addons/Acme/**
+!src/addons/Acme/My-Addon/
+!src/addons/Acme/My-Addon/**
+
+### Installer ###
+!install-from-zip.sh
+
+### General repo items ###
+!.github/**
+!.github/
+!.gitignore
+!readme.md
+
+### Docker items ###
+!.docker/**
+!.docker/
+!docker-compose.yml
