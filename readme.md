@@ -10,6 +10,8 @@ A template for developing addons for xenforo locally using docker containers to 
 
 ## Development env setup
 
+> You will only need to run these steps on the first run. So long as you don't destroy the docker Volumes, you can just run Step 3 again to restart the env
+
 1. Download a copy of xenforo 2 from your account panel, place into this directory and rename as `xenforo.zip`
 
 2. Run `./install-from-zip.sh` to unpack the xenforo source
@@ -30,7 +32,11 @@ Because FPM is running on it's default port of 9000 and exposed on your host, yo
 
 > Note: the IDE key is set via `.docker/xdebug.ini` file. By default, it is set to `docker`.
 
-## Running xenforo CLI
+### Xenforo reporting file inconsistencies
+
+If you accidentally changed one of the core XF files during development, and you want to wipe and reinstall Xenforo source, just run `./install-from-zip.sh` and choose to wipe and unpack the source once again.
+
+### Running xenforo CLI
 
 If you want to use the xenforo CLI to it's full extent, you can execute it via the docker CLI to run within the PHP container
 
@@ -40,9 +46,13 @@ docker exec -it xenforo php cmd.php
 
 It's important to keep the `-it` after docker exec, so that we attach to the output of the command in case there are any input prompts
 
-## Xenforo reporting file inconsistencies
+### Editing Xenforo Config
 
-If you accidentally changed one of the core XF files during development, and you want to wipe and reinstall Xenforo source, just run `./install-from-zip.sh` and choose to wipe and unpack the source once again.
+The config file for this setup exists in the root directory, not the usual `src/config.php`. Feel free to make whatever edits you like to the config file.
+
+> Note: You may see that there is also a `src/config.php` that exists. This is an artifact of how docker binds our local config inside the xenforo source code volume. It's fine that it's empty, just leave that file as is.
+
+
 
 ## Handy docker commands
 
