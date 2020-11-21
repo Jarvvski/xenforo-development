@@ -2,7 +2,9 @@ version: '3.7'
 
 services:
   xenforo_server:
-    image: jarvvski/xenforo-2-php-fpm:latest
+    build:
+      context: ./.docker/
+      dockerfile: xf2-php-fpm.dockerfile
     container_name: xenforo
     healthcheck:
       test: ["CMD", "php-fpm-healthcheck"]
