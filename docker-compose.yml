@@ -2,7 +2,9 @@ version: '3.7'
 
 services:
   xenforo_server:
-    image: jarvvski/xenforo-2-php-fpm:alpine
+    build:
+      context: .docker
+      dockerfile: php.dockerfile
     container_name: xenforo
     healthcheck:
       test: ["CMD", "php-fpm-healthcheck"]
@@ -83,3 +85,4 @@ volumes:
 networks:
   xenforo:
     name: xenforo
+
