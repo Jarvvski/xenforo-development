@@ -2,9 +2,7 @@ version: '3.7'
 
 services:
   xenforo_server:
-    build:
-      context: ./.docker/
-      dockerfile: xf2-php-fpm.dockerfile
+    image: jarvvski/xenforo-2-php-fpm:alpine
     container_name: xenforo
     healthcheck:
       test: ["CMD", "php-fpm-healthcheck"]
@@ -43,9 +41,9 @@ services:
       - xenforo
     ports:
       - 80:80
-    volumes_from:
-      - xenforo_server
     volumes:
+      - xenforo-data:/var/www/html
+      - ./config.php:/var/www/html/src/config.php
       - xenforo-nginx-conf:/etc/nginx/conf.d/
 
   database:
@@ -75,12 +73,12 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ./
+      device: $PWD
   xenforo-nginx-conf:
     driver_opts:
       type: none
       o: bind
-      device: ./.docker/nginx/
+      device: $PWD/.docker/nginx/
 
 networks:
   xenforo:
